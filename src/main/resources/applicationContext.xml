@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="xmlParser"
+          class="by.htp.task3.dao.XmlParserImpl"/>
+
+    <bean id="catalogDAO"
+          class="by.htp.task3.dao.CatalogDAOImpl">
+        <property name="xmlParser" ref="xmlParser"/>
+    </bean>
+
+    <bean id="xmlService"
+          class="by.htp.task3.service.XmlServiceImpl">
+        <constructor-arg ref="xmlParser"/>
+    </bean>
+
+    <bean id="catalogService"
+          class="by.htp.task3.service.CatalogServiceImpl">
+        <constructor-arg ref="catalogDAO"/>
+    </bean>
+
+</beans>
